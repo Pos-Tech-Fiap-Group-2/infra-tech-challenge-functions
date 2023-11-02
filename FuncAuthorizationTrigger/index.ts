@@ -16,13 +16,18 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
           'Authorization' : `Bearer ${auth_token}`
         },
       }).then((resData) => {
-        context.log('RETURN FUNCTION RESPONSE!!!');
-        context.log(`${JSON.stringify(resData)}`);
-
         context.res = {
           // status: 200, /* Defaults to 200 */
           body: JSON.stringify(resData)
-      };
+        };
+      }).catch((error) => {
+        context.res = {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          status: error.message,
+          isRaw: true,
+        };
     });
 };
 
