@@ -2,8 +2,9 @@ name: Deploy Azure Function App
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main]
   pull_request:
+      - feature/*
 
 env:
   AZURE_FUNCTIONAPP_NAME: 'tc-group02-func'
@@ -54,4 +55,4 @@ jobs:
         app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
         package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
         publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
-        slot-name: tc-group02-func
+        #slot-name: tc-group02-func
