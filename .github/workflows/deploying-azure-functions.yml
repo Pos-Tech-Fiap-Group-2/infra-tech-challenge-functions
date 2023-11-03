@@ -4,7 +4,7 @@ on:
   push:
     branches: ["main"]
   pull_request:
-      - feature/*
+    - feature/*
 
 env:
   AZURE_FUNCTIONAPP_NAME: 'tc-group02-func'
