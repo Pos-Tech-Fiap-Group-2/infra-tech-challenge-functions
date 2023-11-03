@@ -44,8 +44,10 @@ jobs:
         npm install
         npm run build
         npm run test --if-present
-        echo 'lista de arquivos:'
-        echo `ls -l dist | awk '{print $9}'`
+        echo 'lista de arquivos FuncAuthenticationTrigger:'
+        echo `ls -l dist/FuncAuthenticationTrigger | awk '{print $9}'`
+        echo 'lista de arquivos FuncAuthorizationTrigger:'
+        echo `ls -l dist/FuncAuthorizationTrigger | awk '{print $9}'`
         popd
 
   deploy:
