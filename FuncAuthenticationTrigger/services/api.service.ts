@@ -13,7 +13,7 @@ class KeycloakApiService implements ApiService {
                             const { statusCode } = response;
                             
                             if (statusCode >= 300) {
-                                reject(new Error(response.statusMessage));
+                                reject(new Error(response.statusCode.toString()));
                             }
 
                             const chunks = [];
@@ -23,7 +23,14 @@ class KeycloakApiService implements ApiService {
                             
                             response.on('end', () => {
                                 const result = Buffer.concat(chunks).toString();
-                                resolve(JSON.parse(result));
+                                let { statusCode } = response;
+                                
+                                if (statusCode >= 300) {
+                                    console.log(`Caiu IF error...`);
+                                    reject(new Error(response.statusCode.toString()));
+                                } else {
+                                    resolve(JSON.parse(result));
+                                }
                             });
                         }
                     );

@@ -10,9 +10,12 @@ class KeycloakApiService implements ApiService {
                         options,
                         function (response) {
                             const { statusCode } = response;
+
+                            console.log(statusCode);
                             
                             if (statusCode >= 300) {
-                                reject(new Error(response.statusMessage));
+                                console.log('entrou no IF');
+                                reject(new Error(response.statusCode.toString()));
                             }
 
                             const chunks = [];
@@ -22,7 +25,13 @@ class KeycloakApiService implements ApiService {
                             
                             response.on('end', () => {
                                 const result = Buffer.concat(chunks).toString();
-                                resolve(JSON.parse(result));
+                                let length: Number = result.length;
+
+                                if (parseInt(length.toString(), 10) > 0) {
+                                    resolve(JSON.parse(result));    
+                                } else {
+                                    reject(new Error(response.statusCode.toString()));
+                                }
                             });
                         }
                     );
