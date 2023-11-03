@@ -6,8 +6,6 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     context.log('HTTP trigger function processed a request.');
     const auth_token = req.headers['x-auth-token'];
 
-    // Alteração para teste de pipeline.
-
     await facade().invoke(auth_token, {
         host: `${env.host}`,
         port: `${env.port}`,
