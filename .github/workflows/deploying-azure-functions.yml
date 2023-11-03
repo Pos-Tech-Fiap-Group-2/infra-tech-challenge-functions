@@ -17,7 +17,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - name: 'Checkout GitHub Action'
       uses: actions/checkout@v3
@@ -50,12 +50,12 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - name: 'Run Azure Functions Action'
       uses: Azure/functions-action@v1
       id: fa
       with:
         app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-        #package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH_DIST }}
+        package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH_DIST }}
         publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
