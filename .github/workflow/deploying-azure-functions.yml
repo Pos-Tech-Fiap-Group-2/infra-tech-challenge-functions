@@ -2,9 +2,8 @@ name: Deploy Azure Function App
 
 on:
   push:
-    branches: [main]
+    branches: [ "main" ]
   pull_request:
-      - feature/*
 
 env:
   AZURE_FUNCTIONAPP_NAME: 'tc-group02-test'   
