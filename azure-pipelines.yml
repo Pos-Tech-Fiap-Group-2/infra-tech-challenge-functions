@@ -28,6 +28,7 @@ stages:
     displayName: Build
     pool:
       vmImage: $(vmImageName)
+      name: local
 
     steps:
     - task: NodeTool@0
@@ -70,6 +71,7 @@ stages:
     environment: $(environmentName)
     pool:
       vmImage: $(vmImageName)
+      name: local
     strategy:
       runOnce:
         deploy:
