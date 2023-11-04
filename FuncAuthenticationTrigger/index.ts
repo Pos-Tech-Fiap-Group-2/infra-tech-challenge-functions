@@ -9,6 +9,8 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     const userName = parsedBody.username;
     const password = parsedBody.password;
 
+    context.log('Executando API...');
+
     await facade().invoke(userName, password, {
         host: `${env.host}`,
         port: `${env.port}`,
